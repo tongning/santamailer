@@ -39,7 +39,7 @@ class Participant(object):
             return False
 
 
-f = open('participants.csv')
+f = open('participants.sample.csv')
 csv_f = csv.reader(f)
 csv_list = list(csv_f)
 csv_list_filtered = list()
@@ -72,8 +72,12 @@ for row in csv_list_filtered:
 
 while len(need_gifter) > 0 or len(need_giftee) > 0:
     # Randomly pick a gifter, and assign a giftee
-    random_gifter = random.choice(need_giftee)
-    random_giftee = random.choice(need_gifter)
+    random_gifter = None
+    random_giftee = None
+
+    while random_gifter == random_giftee:
+        random_gifter = random.choice(need_giftee)
+        random_giftee = random.choice(need_gifter)
     # Assign the giftee to the gifter
 
     random_gifter.assign_giftee(random_giftee)
